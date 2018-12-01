@@ -1,0 +1,83 @@
+{
+  "name": "@ssv/ngx.tilt",
+  "version": "0.1.0",
+  "description": "Angular Wrapper for Vanilla Tilt a smooth 3D tilt.",
+  "keywords": [
+    "ngx",
+    "angular2",
+    "angular",
+    "tilt",
+    "vanilla tilt",
+    "ux",
+    "ui"
+  ],
+  "scripts": {
+    "start": "npm run build -- --watch",
+    "test": "jest",
+    "tdd": "jest --watch",
+    "test-debug": "node --inspect-brk ./node_modules/jest/bin/jest.js --runInBand --env jest-environment-node-debug",
+    "test-devt": "devtool ./node_modules/jest/bin/jest.js --runInBand --env jest-environment-node-debug",
+    "clean": "rimraf dist",
+    "lint": "tslint -p . -c tslint.json -t stylish",
+    "build": "ng-packagr -p ng-package.json",
+    "prepare-release": "gulp prepare-release",
+    "publish:rel": "npm publish dist --access=public"
+  },
+  "author": "Kurt Aquilina <kaquilina92@gmail.com>",
+  "license": "MIT",
+  "private": false,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ssv/ngx.tilt"
+  },
+  "peerDependencies": {
+    "@angular/core": ">=6.0.0",
+    "@types/vanilla-tilt": "^1.4.1",
+    "rxjs": "^6.0.0",
+    "vanilla-tilt": "^1.5.0"
+  },
+  "devDependencies": {
+    "@angular/common": "^7.0.0",
+    "@angular/compiler": "^7.0.0",
+    "@angular/compiler-cli": "^7.0.0",
+    "@angular/core": "^7.0.0",
+    "@angular/platform-browser": "^7.0.0",
+    "@angular/platform-browser-dynamic": "^7.0.0",
+    "@ssv/tools": "^0.8.1",
+    "@types/jest": "^23.3.9",
+    "@types/vanilla-tilt": "^1.4.1",
+    "gulp": "^4.0.0",
+    "gulp-bump": "^3.1.1",
+    "gulp-conventional-changelog": "^2.0.3",
+    "jest": "^23.6.0",
+    "jest-environment-node-debug": "^2.0.0",
+    "lodash": "^4.17.11",
+    "ng-packagr": "^4.4.0",
+    "reflect-metadata": "^0.1.12",
+    "require-dir": "^1.1.0",
+    "rimraf": "^2.6.2",
+    "run-sequence": "^2.2.1",
+    "rxjs": "^6.3.3",
+    "ts-jest": "^23.10.5",
+    "tsickle": "^0.34.0",
+    "tslint": "^5.11.0",
+    "typescript": "~3.1.6",
+    "vanilla-tilt": "^1.5.0",
+    "yargs": "^12.0.5",
+    "zone.js": "^0.8.26"
+  },
+  "resolutions": {
+    "natives": "1.1.3"
+  },
+  "jest": {
+    "transform": {
+      ".(ts|tsx)": "<rootDir>/node_modules/ts-jest/preprocessor.js"
+    },
+    "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js"
+    ]
+  }
+}
