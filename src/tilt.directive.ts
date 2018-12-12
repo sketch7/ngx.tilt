@@ -8,11 +8,12 @@ import { TiltOptions, TiltValues } from "vanilla-tilt";
 })
 export class TiltDirective implements OnInit, OnDestroy {
 
-	@Input() tiltOptions: TiltOptions;
+	@Input() tiltOptions: TiltOptions | undefined;
 
-	@Output() tiltChange = new EventEmitter();
+	@Output() tiltChange = new EventEmitter<TiltValues>();
 
-	private vanillaTilt: VanillaTilt;
+	private vanillaTilt!: VanillaTilt;
+	private onTiltChange = this.handleTiltChange.bind(this);
 
 	constructor(
 		private el: ElementRef<HTMLElement>,
@@ -21,14 +22,14 @@ export class TiltDirective implements OnInit, OnDestroy {
 
 	ngOnInit() {
 		this.vanillaTilt = new VanillaTilt(this.el.nativeElement, this.tiltOptions);
-		this.el.nativeElement.addEventListener("tiltChange", this.handleTiltChange);
+		this.el.nativeElement.addEventListener("tiltChange", this.onTiltChange);
 	}
 
 	ngOnDestroy() {
 		if (this.vanillaTilt) {
 			this.vanillaTilt.destroy();
 		}
-		this.el.nativeElement.removeEventListener("tiltChange", this.handleTiltChange);
+		this.el.nativeElement.removeEventListener("tiltChange", this.onTiltChange);
 	}
 
 	getValues(): TiltValues {
@@ -39,7 +40,7 @@ export class TiltDirective implements OnInit, OnDestroy {
 		this.vanillaTilt.reset();
 	}
 
-	private handleTiltChange() {
-		this.tiltChange.emit();
+	private handleTiltChange(event: CustomEvent<TiltValues>) {
+		this.tiltChange.emit(event.detail);
 	}
 }
